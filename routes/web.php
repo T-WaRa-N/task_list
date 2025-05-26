@@ -57,12 +57,16 @@ class Task
 use Illuminate\Support\Facades\Route;
 use Laravel\Prompts\Concerns\Fallback;
 
-Route::get('/', function () use($tasks) {
+Route::get('/', function () {
+    return redirect()->route('task.index');
+});
+
+Route::get('/tasks', function () use($tasks) {
     return view('index', ['tasks' => $tasks]);
 })->name('task.index');
 
-Route::get('/{id}', function ($id) {
-    return "One Single Task";
+Route::get('/tasks/{id}', function ($id) {
+    return "Task $id";
 })->name("task.show");
 
 // Route::get('/owner', function () {
