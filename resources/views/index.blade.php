@@ -3,8 +3,8 @@
 
 <div>
     {{-- @if(count($tasks)) --}}
-        <div>There are tasks</div>
-        @forelse ($tasks as $task)
+        <div>These are tasks</div>
+        @forelse ($taskss as $task)
             <div>
                 <a href="{{ route('task.show', [ 'id'=>$task->id ]) }}">{{ $task->title }}</a>
             </div>

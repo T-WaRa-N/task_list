@@ -56,22 +56,23 @@ class Task
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Prompts\Concerns\Fallback;
+use Illuminate\Http\Response;
 
 Route::get('/', function () {
     return redirect()->route('task.index');
 });
 
 Route::get('/tasks', function () use($tasks) {
-    return view('index', ['tasks' => $tasks]);
+    return view('index', ['taskss' => $tasks]);
 })->name('task.index');
 
-Route::get('/tasks/{id}', function ($id) {
-    return "Task $id";
+Route::get('/tasks/{id}', function ($id) use($tasks) {
+    $task = collect($tasks) -> firstWhere('id',$id);
+    if (!$task) {
+        abort(Response::HTTP_NOT_FOUND);
+    }
+    return view('show',['all_tasks' => $task]);
 })->name("task.show");
-
-// Route::get('/owner', function () {
-//     return redirect() -> route('owner');
-// });
 
 Route::fallback(function () {
     return "still got somewhere";
