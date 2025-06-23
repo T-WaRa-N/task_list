@@ -63,7 +63,7 @@ Route::get('/', function () {
 });
 
 Route::get('/tasks', function () use($tasks) {
-    return view('index', ['taskss' => $tasks]);
+    return view('index', ['tasks' => $tasks]);
 })->name('task.index');
 
 Route::get('/tasks/{id}', function ($id) use($tasks) {
