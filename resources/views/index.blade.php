@@ -1,9 +1,9 @@
 
-<div>Hello blade template</div>
+<h1>Hello blade template</h1>
 
 <div>
     {{-- @if(count($tasks)) --}}
-        <div>These are tasks</div>
+        <h3>These are tasks</h3>
         @forelse ($tasks as $task)
             <div>
                 <a href="{{ route('task.show', [ 'id'=>$task->id ]) }}">{{ $task->title }}</a>
